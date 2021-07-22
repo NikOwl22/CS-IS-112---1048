@@ -1,0 +1,51 @@
+//This program takes user input, adds it to a total and outputs a receipt with both sums
+import java.util.Scanner;//to receive input from the user
+import java.text.DecimalFormat;//to curtail decimals to desired places
+
+public class ThatRestaurant {
+    public static void main(String args[]) {
+        
+        Scanner keyboard = new Scanner (System.in); //recieve input from user
+        //curtail decimals to 2 spaces and add comma
+        DecimalFormat formatter = new DecimalFormat ("$#,##0.00");
+        
+        //declare variables to be used 
+        int choice; // for choice from menu
+        double PreBill=0;//INITIALIZE BILL TO ZERO?
+        double EndBill=0; //bill after tip has been added
+        
+        //Menu and prompt for user selection.
+        System.out.println ("Welcome to That Restaurant's tip calculator." + 
+                            "\nPlease select the amount of gratuity:");
+        System.out.println ("1.) 15% gratuity");
+        //System.out.println ("2.) 18% gratuity");
+        //System.out.println ("3.) 20% gratuity"); 
+        //System.out.println ("4.) 50% gratuity (recommended)");
+        System.out.println ("5.) No gratuity");    
+        //attain user choice as int and save
+        choice = keyboard.nextInt ();
+        
+        //if they enter 1 thru 4 prompt for the total bill
+        if (choice >= 1 && choice <=4)
+        {
+            System.out.print ("What is the bill total? ");
+            PreBill = keyboard.nextDouble ();
+        }
+        //Strings for output of receipt using printf
+             String Title1 = "\n             That Restaurant         " + 
+                            "\n_______________________________________\n";
+             String Title2Bill = "Bill                           " + formatter.format(PreBill) + "\n";
+             String Title4Total = "Total                            " + formatter.format (EndBill) + "\n"; 
+             String Title5Line = "_______________________________________";
+             String Title6End = "         Thank You, Come Again!           ";
+             
+        //Switch (PreBill)
+        //{
+            //case 1: //15% tip
+            EndBill = (PreBill*0.15)+PreBill;
+            System.out.printf ("%s \n%s", Title1, Title2Bill);
+            System.out.println ("Tip (15%)                       " + formatter.format (PreBill*0.15) + "\n\n");
+            System.out.printf ("%s %s \n %s", Title4Total, Title5Line, Title6End);
+    //}
+    }
+}
